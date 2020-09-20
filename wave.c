@@ -129,6 +129,7 @@ static void expectString(waveFile file, char* expectedString) {
     readExactBytes(file, buf, length);
     buf[length] = '\0';
     if (strcmp(expectedString, buf)) {
+      fprintf(stderr, "experctedString: %s\nbuf: %s\n", expectedString, buf);
       fprintf(stderr, "Unsupported wave file format\n");
       file->failed = 1;
     }
@@ -194,7 +195,7 @@ static int readHeader(waveFile file) {
   if (chunkSize == 18) { /* ffmpeg writes 18, and so has 2 extra bytes here */
     data = readShort(file);
   }
-  expectString(file, "data"); /* 36 - data */
+  /* expectString(file, "data"); /1* 36 - data *1/ */
   readInt(file);              /* 40 - how big is this data chunk */
   return 1;
 }

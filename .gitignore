@@ -1,1 +1,4 @@
 *.obj
+libsonic.*
+*.o
+sonic
